@@ -11,19 +11,33 @@ namespace Project1.Data
     public class SqlRepository : IRepository
     {
         string connectionString = File.ReadAllText("F:/Revature/Project1/connectionString.txt");
-        public void createAccount(string email, string password, string permissions)
+        public bool createAccount(string email, string password, string permissions)
         {
             //takes email, password, permissions as parameters
             //inserts them into database
-            //selects the data from the database
-            //creates new UserAccount object from the selected data
-            //returns the object
+
+            //to check if user already exists:
+            //perform a select command, loop thru db with a reader
+            //if reader finds the username, return false
 
 
-            //creating and adding account to the database
             using SqlConnection connection = new SqlConnection(connectionString);
             connection.Open();
 
+            //checking if username exists
+            string checkUser = @"select email from Project1.UserAccount where email = @email;";
+            using SqlCommand checkUserCommand = new SqlCommand(checkUser, connection);
+            checkUserCommand.Parameters.AddWithValue("@email", email);
+            using SqlDataReader reader = checkUserCommand.ExecuteReader();
+
+            while(reader.Read())
+            {
+                return false;
+            }
+            reader.Close();
+
+            //if we're here it means the username doesnt exist; safe to make the account
+            //creating and adding account to the database
             string cmdText = @"insert into Project1.UserAccount (email, password, permissions)
                              values (@email, @password, @permissions);";
 
@@ -33,15 +47,21 @@ namespace Project1.Data
             command.Parameters.AddWithValue("@password", password);
             command.Parameters.AddWithValue("@permissions", permissions);
 
+
             command.ExecuteNonQuery();
             //finished adding to database
-
+            
             connection.Close();
 
+            return true;
         }
 
         public UserAccount getAccount(string email, string password)
         {
+            //selects the data from the database
+            //creates new UserAccount object from the selected data
+            //returns the object
+
             using SqlConnection connection = new SqlConnection(connectionString);
             connection.Open();
 
