@@ -11,7 +11,7 @@ namespace Project1.Data
     public class SqlRepository : IRepository
     {
         string connectionString = File.ReadAllText("F:/Revature/Project1/connectionString.txt");
-        public UserAccount createAccount(string email, string password, string permissions)
+        public void createAccount(string email, string password, string permissions)
         {
             //takes email, password, permissions as parameters
             //inserts them into database
@@ -36,15 +36,27 @@ namespace Project1.Data
             command.ExecuteNonQuery();
             //finished adding to database
 
+            connection.Close();
+
+        }
+
+        public UserAccount getAccount(string email, string password)
+        {
+            using SqlConnection connection = new SqlConnection(connectionString);
+            connection.Open();
+
             //selecting from database and making a new object
-            string cmdText2 = @"select accountID, email, password, permissions from Project1.UserAccount where email = @email;";
-            using SqlCommand command2 = new SqlCommand(cmdText2, connection);
-            command2.Parameters.AddWithValue("@email", email);
-            using SqlDataReader reader = command2.ExecuteReader();
+            string cmdText = @"select accountID, email, password, permissions from Project1.UserAccount where email = @email and password = @password;";
+            using SqlCommand command = new SqlCommand(cmdText, connection);
+
+            command.Parameters.AddWithValue("@email", email);
+            command.Parameters.AddWithValue("@password", password);
+
+            using SqlDataReader reader = command.ExecuteReader();
 
             UserAccount tmpAccount;
 
-            while(reader.Read())
+            while (reader.Read())
             {
                 //                                      accountID           email                  password         permissions   
                 return tmpAccount = new UserAccount(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3));
@@ -54,7 +66,6 @@ namespace Project1.Data
 
             UserAccount noAccount = new();
             return noAccount;
-
         }
     }
 }

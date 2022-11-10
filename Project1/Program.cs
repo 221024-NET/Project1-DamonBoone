@@ -2,20 +2,19 @@
 using Project1.Data;
 using System;
 
-namespace Project1
+namespace Project1.App
 {
     class App
     {
         public static void Main(string[] args)
         {
-            //testing connection string
-            string connectionString = File.ReadAllText("F:/Revature/Project1/connectionString.txt");
-            Console.WriteLine(connectionString);
 
             IRepository repo = new SqlRepository();
-            UserAccount user = repo.createAccount("abc@123.com", "password", "employee");
+            AccountManager acc = new AccountManager(repo);
 
-            user.printAccountDetails();
+            UserAccount a = acc.getAccount("test@test.com", "pass");
+
+            a.printAccountDetails();
 
             //display welcome message and prompt user to enter email
             //if no email found, get email,password and pass them to createAccount method
