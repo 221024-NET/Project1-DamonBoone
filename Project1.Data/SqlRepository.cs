@@ -11,7 +11,7 @@ namespace Project1.Data
     public class SqlRepository : IRepository
     {
         string connectionString = File.ReadAllText("F:/Revature/Project1/connectionString.txt");
-        public bool createAccount(string email, string password, string permissions)
+        public bool createAccount(string email, string password, string role)
         {
             //takes email, password, permissions as parameters
             //inserts them into database
@@ -36,16 +36,16 @@ namespace Project1.Data
             }
             reader.Close();
 
-            //if we're here it means the username doesnt exist; safe to make the account
+            //if we're here it means the username doesn't exist; safe to make the account
             //creating and adding account to the database
-            string cmdText = @"insert into Project1.UserAccount (email, password, permissions)
-                             values (@email, @password, @permissions);";
+            string cmdText = @"insert into Project1.UserAccount (email, password, role)
+                             values (@email, @password, @role);";
 
             using SqlCommand command = new SqlCommand(cmdText, connection);
 
             command.Parameters.AddWithValue("@email", email);
             command.Parameters.AddWithValue("@password", password);
-            command.Parameters.AddWithValue("@permissions", permissions);
+            command.Parameters.AddWithValue("@role", role);
 
 
             command.ExecuteNonQuery();
@@ -56,7 +56,7 @@ namespace Project1.Data
             return true;
         }
 
-        public UserAccount getAccount(string email, string password)
+        public UserAccount getAccount(string email, string role)
         {
             //selects the data from the database
             //creates new UserAccount object from the selected data
@@ -66,11 +66,11 @@ namespace Project1.Data
             connection.Open();
 
             //selecting from database and making a new object
-            string cmdText = @"select accountID, email, password, permissions from Project1.UserAccount where email = @email and password = @password;";
+            string cmdText = @"select accountID, email, password, role from Project1.UserAccount where email = @email and password = @password;";
             using SqlCommand command = new SqlCommand(cmdText, connection);
 
             command.Parameters.AddWithValue("@email", email);
-            command.Parameters.AddWithValue("@password", password);
+            command.Parameters.AddWithValue("@role", role);
 
             using SqlDataReader reader = command.ExecuteReader();
 
@@ -78,7 +78,7 @@ namespace Project1.Data
 
             while (reader.Read())
             {
-                //                                      accountID           email                  password         permissions   
+                //                                      accountID           email                  password             role   
                 return tmpAccount = new UserAccount(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3));
             }
             connection.Close();

@@ -16,7 +16,7 @@ namespace Project1.App
 
             //a.printAccountDetails();
 
-            Console.WriteLine(repo.createAccount("test@blast.com", "pass", "employee"));
+            Console.WriteLine(repo.createAccount("test@blast.com", "pass", "manager"));
 
             //display welcome message and prompt user to enter email
             //if no email found, get email,password and pass them to createAccount method

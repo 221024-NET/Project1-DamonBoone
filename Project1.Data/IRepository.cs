@@ -4,7 +4,7 @@ namespace Project1.Data
 {
     public interface IRepository
     {
-        public bool createAccount(string email, string password, string permissions);
+        public bool createAccount(string email, string password, string role);
         public UserAccount getAccount(string email, string password);
     }
 }
