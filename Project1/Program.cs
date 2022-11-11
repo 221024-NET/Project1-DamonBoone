@@ -10,13 +10,19 @@ namespace Project1.App
         {
 
             IRepository repo = new SqlRepository();
-            AccountManager acc = new AccountManager(repo);
+            UserIO IO = new UserIO();
+            AccountManager acc = new AccountManager(repo, IO);
 
-            //UserAccount a = acc.getAccount("test@test.com", "pass");
+            
 
-            //a.printAccountDetails();
+            UserAccount currentUser = acc.login();
+            currentUser.printAccountDetails();
 
-            Console.WriteLine(repo.createAccount("test@blast.com", "pass", "manager"));
+            
+
+            
+
+            //Console.WriteLine(repo.createAccount("test@blast.com", "pass", "manager"));
 
             //display welcome message and prompt user to enter email
             //if no email found, get email,password and pass them to createAccount method

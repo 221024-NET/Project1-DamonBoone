@@ -56,7 +56,7 @@ namespace Project1.Data
             return true;
         }
 
-        public UserAccount getAccount(string email, string role)
+        public UserAccount getAccount(string email, string password)
         {
             //selects the data from the database
             //creates new UserAccount object from the selected data
@@ -70,7 +70,7 @@ namespace Project1.Data
             using SqlCommand command = new SqlCommand(cmdText, connection);
 
             command.Parameters.AddWithValue("@email", email);
-            command.Parameters.AddWithValue("@role", role);
+            command.Parameters.AddWithValue("@password", password);
 
             using SqlDataReader reader = command.ExecuteReader();
 

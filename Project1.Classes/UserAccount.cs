@@ -1,4 +1,6 @@
-﻿namespace Project1.Classes
+﻿using System.Text;
+
+namespace Project1.Classes
 {
     public class UserAccount
     {
@@ -19,10 +21,18 @@
 
         public void printAccountDetails()
         {
-            Console.WriteLine(this.id);
-            Console.WriteLine(this.email);
-            Console.WriteLine(this.password);
-            Console.WriteLine(this.role);
+            StringBuilder hiddenPassword = new StringBuilder();
+            
+            foreach (char c in this.password)
+            {
+                 hiddenPassword.Append("*");
+            }
+            Console.WriteLine();
+            Console.WriteLine("Welcome!");
+            Console.WriteLine("Your ID is: " + this.id);
+            Console.WriteLine("Your email is: " + this.email);
+            Console.WriteLine("Your password is: " + hiddenPassword);
+            Console.WriteLine("Your role is: " + this.role);
         }
     }
 }
