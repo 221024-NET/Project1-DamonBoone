@@ -11,10 +11,10 @@ namespace Project1.App
 {
     public class AccountManager
     {
-        IRepository repo;
+        AccountRepository repo;
         UserIO IO;
 
-        public AccountManager(IRepository repo, UserIO IO)
+        public AccountManager(AccountRepository repo, UserIO IO)
         {
             this.repo = repo;
             this.IO = IO;

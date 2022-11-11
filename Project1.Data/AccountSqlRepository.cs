@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Project1.Data
 {
-    public class SqlRepository : IRepository
+    public class AccountSqlRepository : AccountRepository
     {
         string connectionString = File.ReadAllText("F:/Revature/Project1/connectionString.txt");
         public bool createAccount(string email, string password, string role)

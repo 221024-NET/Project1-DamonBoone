@@ -9,18 +9,14 @@ namespace Project1.App
         public static void Main(string[] args)
         {
 
-            IRepository repo = new SqlRepository();
+            AccountRepository repo = new AccountSqlRepository();
             UserIO IO = new UserIO();
             AccountManager acc = new AccountManager(repo, IO);
 
-            
+            //UserAccount currentUser = acc.login();
+            //currentUser.printAccountDetails();
 
-            UserAccount currentUser = acc.login();
-            currentUser.printAccountDetails();
 
-            
-
-            
 
             //Console.WriteLine(repo.createAccount("test@blast.com", "pass", "manager"));
 
