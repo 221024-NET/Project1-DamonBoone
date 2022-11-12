@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Project1.Data
 {
-    internal interface TicketRepository
+    public interface TicketRepository
     {
         public bool createTicket(double amount, string description);
         public List<Ticket> getAllTickets();

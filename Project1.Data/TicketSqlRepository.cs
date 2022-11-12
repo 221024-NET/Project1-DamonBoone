@@ -1,6 +1,7 @@
 ﻿using Project1.Classes;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +14,31 @@ namespace Project1.Data
 
         public bool createTicket(double amount, string description)
         {
-            throw new NotImplementedException();
+            using SqlConnection connection = new SqlConnection(connectionString);
+            connection.Open();
+
+            //checking for duplicate ticket
+            string checkTicket = @"select amount, description from Project1.Ticket where amount = @amount and description = @description;";
+            using SqlCommand checkTicketCommand = new SqlCommand(checkTicket, connection);
+            checkTicketCommand.Parameters.AddWithValue("@amount", amount);
+            checkTicketCommand.Parameters.AddWithValue("@description", description);
+            using SqlDataReader reader = checkTicketCommand.ExecuteReader();
+
+            while(reader.Read())
+            {
+                return false;
+            }
+            reader.Close();
+
+            //creating and adding new ticket to db
+            string newTicket = @"insert into Project1.Ticket (amount, description, status)
+                               values (@amount, @description, 'pending');";
+            using SqlCommand newTicketCommand = new SqlCommand(newTicket, connection);
+            newTicketCommand.Parameters.AddWithValue("@amount", amount);
+            newTicketCommand.Parameters.AddWithValue("@description", description);
+            newTicketCommand.ExecuteNonQuery();
+            connection.Close();
+            return true;
         }
 
         public List<Ticket> getAllTickets()

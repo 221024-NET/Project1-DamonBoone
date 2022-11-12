@@ -12,9 +12,11 @@ namespace Project1.App
             AccountRepository repo = new AccountSqlRepository();
             UserIO IO = new UserIO();
             AccountManager acc = new AccountManager(repo, IO);
+            TicketRepository trepo = new TicketSqlRepository();
 
-            UserAccount currentUser = acc.login();
-            currentUser.printAccountDetails();
+            //UserAccount currentUser = acc.login();
+            //currentUser.printAccountDetails();
+
 
 
 
