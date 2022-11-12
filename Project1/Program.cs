@@ -12,10 +12,19 @@ namespace Project1.App
             AccountRepository repo = new AccountSqlRepository();
             UserIO IO = new UserIO();
             AccountManager acc = new AccountManager(repo, IO);
-            TicketRepository trepo = new TicketSqlRepository();
 
-            //UserAccount currentUser = acc.login();
-            //currentUser.printAccountDetails();
+            TicketRepository trepo = new TicketSqlRepository();
+            TicketIO tIO = new TicketIO();
+            TicketManager tm = new TicketManager(trepo, tIO);
+
+            UserAccount currentUser = acc.login();
+            currentUser.printAccountDetails();
+            if(currentUser.role == "employee")
+            {
+                tm.createTicket();
+            }
+
+            
 
 
 

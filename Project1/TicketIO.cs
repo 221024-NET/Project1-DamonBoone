@@ -14,10 +14,30 @@ namespace Project1
         {
             double amount = 0;
 
-            Console.WriteLine("Please enter the amount in USD: ");
-            amount = Convert.ToDouble(Console.ReadLine());
+            while (true)
+            {
+                try
+                {
+                    Console.WriteLine("Please enter the amount in USD: ");
+                    amount = Convert.ToDouble(Console.ReadLine());
+                }
+                catch(System.FormatException ex)
+                {
+                    Console.WriteLine("Error! Amount must be a number with up to 2 decimal places.");
+                    continue;
+                }
+                return amount;
+            }
+        }
 
-            return amount;
+        public string getDescription()
+        {
+            string description;
+
+            Console.WriteLine("Please enter a description: ");
+            description = Console.ReadLine();
+
+            return description;
         }
     }
 }
