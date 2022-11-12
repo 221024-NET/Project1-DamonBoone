@@ -40,28 +40,40 @@ namespace Project1.App
             //if they entered 2, create a new one
             else if(menuSelection == 2)
             {
-                email = IO.getLoginEmail();
-                password = IO.getLoginPassword();
-                roleNumber = IO.getRole();
+                while (true)
+                {
+                    email = IO.getLoginEmail();
+                    password = IO.getLoginPassword();
+                    roleNumber = IO.getRole();
 
-                if(roleNumber == 1)
-                {
-                    roleName = "employee";
-                    repo.createAccount(email, password, roleName);
-                    account = repo.getAccount(email, password);
-                    return account;
-                }
-                else if (roleNumber == 2)
-                {
-                    roleName = "manager";
-                    repo.createAccount(email, password, roleName);
-                    account = repo.getAccount(email, password);
-                    return account;
-                }
-                else
-                {
-                    account = new();
-                    return account;
+                    if (roleNumber == 1)
+                    {
+                        roleName = "employee";
+                        if (repo.createAccount(email, password, roleName))
+                        {
+                            account = repo.getAccount(email, password);
+                            return account;
+                        }
+                        else
+                        {
+                            Console.WriteLine("That account already exists! Try again.");
+                            continue;
+                        }
+                    }
+                    else if (roleNumber == 2)
+                    {
+                        roleName = "manager";
+                        if (repo.createAccount(email, password, roleName))
+                        {
+                            account = repo.getAccount(email, password);
+                            return account;
+                        }
+                        else
+                        {
+                            Console.WriteLine("That account already exists! Try again.");
+                            continue;
+                        }
+                    }
                 }
             }
             else

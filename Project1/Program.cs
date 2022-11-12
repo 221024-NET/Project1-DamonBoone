@@ -13,8 +13,8 @@ namespace Project1.App
             UserIO IO = new UserIO();
             AccountManager acc = new AccountManager(repo, IO);
 
-            //UserAccount currentUser = acc.login();
-            //currentUser.printAccountDetails();
+            UserAccount currentUser = acc.login();
+            currentUser.printAccountDetails();
 
 
 

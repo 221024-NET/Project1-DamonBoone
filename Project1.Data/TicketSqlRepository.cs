@@ -16,7 +16,12 @@ namespace Project1.Data
             throw new NotImplementedException();
         }
 
-        public Ticket getAllTickets()
+        public List<Ticket> getAllTickets()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Ticket> getPendingTickets()
         {
             throw new NotImplementedException();
         }

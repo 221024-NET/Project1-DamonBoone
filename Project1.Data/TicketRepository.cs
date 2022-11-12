@@ -10,6 +10,7 @@ namespace Project1.Data
     internal interface TicketRepository
     {
         public bool createTicket(double amount, string description);
-        public Ticket getAllTickets(int id);
+        public List<Ticket> getAllTickets();
+        public List<Ticket> getPendingTickets();
     }
 }
