@@ -4,10 +4,10 @@ namespace Project1.Classes
 {
     public class UserAccount
     {
-        int id {get; set;}
-        string email { get; set; }
-        string password { get; set; }
-        string role { get; set; } //either employee or manager
+        public int id {get; set;}
+        public string email { get; set; }
+        public string password { get; set; }
+        public string role { get; set; } //either employee or manager
 
         public UserAccount(int id, string email, string password, string permissions)
         {

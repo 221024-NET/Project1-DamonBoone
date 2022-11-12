@@ -32,10 +32,21 @@ namespace Project1.App
             //if they entered 1, log into existing account
             if(menuSelection == 1)
             {
-                email = IO.getLoginEmail();
-                password = IO.getLoginPassword();
-                account = repo.getAccount(email, password);
-                return account;
+                while (true)
+                {
+                    email = IO.getLoginEmail();
+                    password = IO.getLoginPassword();
+                    account = repo.getAccount(email, password);
+                    if(account.email != null)
+                    {
+                        return account;
+                    }
+                    else
+                    {
+                        Console.WriteLine("That account does not exist or your password is wrong. Please try again.");
+                        continue;
+                    }
+                }
             }
             //if they entered 2, create a new one
             else if(menuSelection == 2)
