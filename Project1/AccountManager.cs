@@ -37,6 +37,7 @@ namespace Project1.App
                     email = IO.getLoginEmail();
                     password = IO.getLoginPassword();
                     account = repo.getAccount(email, password);
+                    //input validation...
                     if(account.email != null)
                     {
                         return account;
@@ -56,11 +57,11 @@ namespace Project1.App
                     email = IO.getLoginEmail();
                     password = IO.getLoginPassword();
                     roleNumber = IO.getRole();
-
+                    //user enters a number for a role, translate that number into a role manually
                     if (roleNumber == 1)
                     {
                         roleName = "employee";
-                        if (repo.createAccount(email, password, roleName))
+                        if (repo.createAccount(email, password, roleName)) //this returns true if the account was succesfully created, false otherwise
                         {
                             account = repo.getAccount(email, password);
                             return account;
@@ -89,6 +90,7 @@ namespace Project1.App
             }
             else
             {
+                //input validation should avoid this ever happening...
                 account = new();
                 return account;
             }

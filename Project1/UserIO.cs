@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Project1.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,7 @@ namespace Project1.App
         public UserIO() { }
         //show inital prompt for user login
         //steps:
-        //enter your username, or press 0 to make an account
+        //enter your username, or press 2 to make an account
         //if they enter user, ask for password
         //call getAccount method, if it cant find their account re-prompt
         //allow user to go back to making an account or try credentials again
@@ -32,6 +33,7 @@ namespace Project1.App
                     Console.WriteLine("1. Login with existing account");
                     Console.WriteLine("2. Create new account");
                     menuSelection = Convert.ToInt32(Console.ReadLine());
+                    //input validation...
                     if (menuSelection == 1 || menuSelection == 2)
                     {
                         keepGoing = false;
@@ -79,6 +81,7 @@ namespace Project1.App
                     Console.WriteLine("1. Employee");
                     Console.WriteLine("2. Manager");
                     role = Convert.ToInt32(Console.ReadLine());
+                    //input validation...
                     if (role == 1 || role == 2)
                     {
                         keepGoing = false;
@@ -90,6 +93,15 @@ namespace Project1.App
                 }
             }
             return role;
+        }
+
+        public bool employeeMenu(UserAccount user)
+        {
+            //check if the currently logged in account has the employee role
+            //if they dont.. dont show this menu
+            //enter 1 to create a new ticket
+            //enter 2 to see all tickets
+            return true;
         }
     }
 }
