@@ -24,7 +24,7 @@ namespace Project1.Classes
         public void printTicketDetails()
         {
             Console.WriteLine();
-            Console.WriteLine("Information about the current ticket.");
+            Console.WriteLine("Information about this ticket: ");
             Console.WriteLine("ID: " + this.id);
             Console.WriteLine("Amount: " + this.amount);
             Console.WriteLine("Description: " + this.description);

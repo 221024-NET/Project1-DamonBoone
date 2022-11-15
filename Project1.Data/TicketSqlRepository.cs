@@ -43,10 +43,32 @@ namespace Project1.Data
 
         public List<Ticket> getAllTickets()
         {
-            throw new NotImplementedException();
+            List<Ticket> allTickets = new List<Ticket>();
+
+            using SqlConnection connection = new SqlConnection(connectionString);
+            connection.Open();
+
+            string findAllTickets = @"select ticketID, amount, description, status from Project1.Ticket;";
+            using SqlCommand allTicketsCommand = new SqlCommand(findAllTickets, connection);
+            using SqlDataReader reader = allTicketsCommand.ExecuteReader();
+
+            while(reader.Read())
+            {
+                //amount is stored in the db as a decimal type, have to convert it to double for the ticket class
+                double amount = Convert.ToDouble(reader.GetDecimal(1));
+                allTickets.Add(new Ticket(reader.GetInt32(0), amount, reader.GetString(2), reader.GetString(3)));
+            }
+
+            connection.Close();
+            return allTickets;
         }
 
         public List<Ticket> getPendingTickets()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool updateTicketStats(double amount, string description)
         {
             throw new NotImplementedException();
         }

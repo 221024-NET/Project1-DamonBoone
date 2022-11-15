@@ -1,4 +1,5 @@
-﻿using Project1.Data;
+﻿using Project1.Classes;
+using Project1.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,6 +37,15 @@ namespace Project1.App
                     Console.WriteLine("That ticket already exists. Duplicates are not allowed. Please try again.");
                     continue;
                 }
+            }
+        }
+
+        public void printAllTickets()
+        {
+            List<Ticket> ticketList = ticketRepo.getAllTickets();
+            foreach(Ticket ticket in ticketList)
+            {
+                ticket.printTicketDetails();
             }
         }
     }

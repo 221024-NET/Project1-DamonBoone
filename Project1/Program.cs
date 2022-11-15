@@ -21,11 +21,18 @@ namespace Project1.App
             currentUser.printAccountDetails();
             if(currentUser.role == "employee")
             {
-                tm.createTicket();
+                tm.printAllTickets();
             }
 
             
+            //for employees:
+            //show a menu where they can select either create a new ticket or view past history of tickets
 
+            //for managers:
+            //get pending tickets from db and put them into a list
+            //show the manager the list
+            //allow them to select a ticket and change its status
+            //upon status change, update the ticket in the db and remove it from the pending list
 
 
 
