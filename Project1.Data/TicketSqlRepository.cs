@@ -55,7 +55,7 @@ namespace Project1.Data
             while(reader.Read())
             {
                 //amount is stored in the db as a decimal type, have to convert it to double for the ticket class
-                double amount = Convert.ToDouble(reader.GetDecimal(1));
+                double amount = Convert.ToDouble(reader.GetDecimal(1)); 
                 allTickets.Add(new Ticket(reader.GetInt32(0), amount, reader.GetString(2), reader.GetString(3)));
             }
 
@@ -65,12 +65,38 @@ namespace Project1.Data
 
         public List<Ticket> getPendingTickets()
         {
-            throw new NotImplementedException();
+            List<Ticket> pendingTickets = new List<Ticket>();
+
+            using SqlConnection connection = new SqlConnection(connectionString);
+            connection.Open();
+
+            string findPendingTickets = @"select ticketID, amount, description, status from Project1.Ticket where status = 'pending';";
+            using SqlCommand pendingTicketsCommand = new SqlCommand(findPendingTickets, connection);
+            using SqlDataReader reader = pendingTicketsCommand.ExecuteReader();
+
+            while (reader.Read())
+            {
+                //amount is stored in the db as a decimal type, have to convert it to double for the ticket class
+                double amount = Convert.ToDouble(reader.GetDecimal(1));
+                pendingTickets.Add(new Ticket(reader.GetInt32(0), amount, reader.GetString(2), reader.GetString(3)));
+            }
+
+            connection.Close();
+            return pendingTickets;
         }
 
-        public bool updateTicketStats(double amount, string description)
+        public void updateTicketStatus(int ticketID, string newStatus)
         {
-            throw new NotImplementedException();
+            using SqlConnection connection = new SqlConnection(connectionString);
+            connection.Open();
+
+            string update = @"update Project1.Ticket set status = @newStatus where ticketID = @ticketID;";
+            using SqlCommand updateCommand = new SqlCommand(update, connection);
+            updateCommand.Parameters.AddWithValue("@newStatus", newStatus);
+            updateCommand.Parameters.AddWithValue("@ticketID", ticketID);
+            using SqlDataReader reader = updateCommand.ExecuteReader();
+
+            connection.Close();
         }
     }
 }

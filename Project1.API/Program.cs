@@ -1,4 +1,5 @@
 using Project1.Data;
+using Project1.Classes;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -7,6 +8,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var conn = File.ReadAllText("F:/Revature/Project1/connectionString.txt");
+//var conn = builder.Configuration.GetValue<string>("ConnectionString:DamonDB");
 
 builder.Services.AddTransient<AccountSqlRepository>();
 builder.Services.AddTransient<TicketSqlRepository>();
@@ -24,25 +26,39 @@ app.UseHttpsRedirection();
 
 app.MapGet("/getaccount", (AccountSqlRepository repo, string email, string password) =>
 {
-    repo.getAccount(email, password);
+    return repo.getAccount(email, password);
 });
 
 app.MapPost("/createaccount", (AccountSqlRepository repo, string email, string password, string role) =>
 {
-    repo.createAccount(email, password, role);
-    return Results.NoContent();
+
+    if(repo.createAccount(email, password, role))
+    {
+        return repo.getAccount(email, password);
+    }
+    else
+    {
+        return null;
+    }
+    
+
 });
 
 app.MapGet("/gettickets", (TicketSqlRepository repo) =>
 {
-    repo.getAllTickets();
+    return repo.getAllTickets();
 });
 
 app.MapPost("/createticket", (TicketSqlRepository repo, double amount, string description) =>
 {
-    repo.createTicket(amount, description);
-    return Results.NoContent();
+    return repo.createTicket(amount, description);
 });
 
 
+
 app.Run();
+
+
+
+
+

@@ -17,12 +17,16 @@ namespace Project1.App
             TicketIO tIO = new TicketIO();
             TicketManager tm = new TicketManager(trepo, tIO);
 
-            UserAccount currentUser = acc.login();
-            currentUser.printAccountDetails();
-            if(currentUser.role == "employee")
-            {
-                tm.printAllTickets();
-            }
+
+            
+            //UserAccount currentUser = acc.login();
+            //currentUser.printAccountDetails();
+            //if(currentUser.role == "employee")
+            //{
+            //    tm.printAllTickets();
+            //}
+
+            
 
             
             //for employees:
