@@ -1,5 +1,7 @@
 using Project1.Data;
 using Project1.Classes;
+using Microsoft.AspNetCore.Mvc;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -24,24 +26,22 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapGet("/getaccount", (AccountSqlRepository repo, string email, string password) =>
+app.MapPost("/login", (AccountSqlRepository repo, [FromBody]UserAccount user) =>
 {
-    return repo.getAccount(email, password);
+    return repo.getAccount(user.email, user.password);
 });
 
-app.MapPost("/createaccount", (AccountSqlRepository repo, string email, string password, string role) =>
+app.MapPost("/register", (AccountSqlRepository repo, [FromBody]UserAccount user) =>
 {
 
-    if(repo.createAccount(email, password, role))
+    if(repo.createAccount(user.email, user.password, user.role))
     {
-        return repo.getAccount(email, password);
+        return repo.getAccount(user.email, user.password);
     }
     else
     {
         return null;
     }
-    
-
 });
 
 app.MapGet("/gettickets", (TicketSqlRepository repo) =>
@@ -54,6 +54,16 @@ app.MapPost("/createticket", (TicketSqlRepository repo, double amount, string de
     return repo.createTicket(amount, description);
 });
 
+app.MapGet("/getpendingtickets", (TicketSqlRepository repo) => 
+{
+    return repo.getPendingTickets();
+}) ;
+
+app.MapPut("/updateticketstatus", (TicketSqlRepository repo, int ticketID, string status) =>
+{
+    repo.updateTicketStatus(ticketID, status);
+    return Results.NoContent();
+});
 
 
 app.Run();
