@@ -78,7 +78,25 @@ namespace Project1.App
             //enter id of the ticket they want to update
             //enter the new status
             //update ticket in db, remove it from the list
-        }
 
+            List<Ticket> ticketList = getPendingTickets();
+            bool keepGoing = true;
+            int selection = 0;
+            string newStatus = "";
+
+            while (keepGoing)
+            {
+                selection = ticketIO.ticketToUpdate();
+                for (int i = 0; i < ticketList.Count; i++)
+                {
+                    if (ticketList[i].id == selection) {
+                        newStatus = ticketIO.getNewStatus();
+                        ticketRepo.updateTicketStatus(selection, newStatus);
+                        ticketList.RemoveAt(i);
+                        keepGoing = false;
+                    }
+                }
+            }
+        }
     }
 }

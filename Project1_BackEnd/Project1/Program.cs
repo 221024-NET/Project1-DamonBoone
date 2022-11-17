@@ -25,6 +25,10 @@ namespace Project1.App
             {
                 tm.employeeMenu();
             }
+            else if(currentUser.role == "manager")
+            {
+                tm.updateTicket();
+            }
 
             //if(currentUser.role == "employee")
             //{

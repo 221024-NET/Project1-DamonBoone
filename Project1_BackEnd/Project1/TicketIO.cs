@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -79,6 +80,29 @@ namespace Project1
             status = Console.ReadLine();
 
             return status;
+        }
+
+        public int ticketToUpdate()
+        {
+            int ticketID = 0;
+            bool keepGoing = true;
+            while(keepGoing)
+            {
+                try
+                {
+                    Console.WriteLine("Enter the ID of the ticket you would like to update: ");
+                    ticketID = Convert.ToInt32(Console.ReadLine());
+                    if (ticketID > 0)
+                    {
+                        keepGoing = false;
+                    }
+                }
+                catch (System.FormatException ex)
+                {
+                    Console.WriteLine("Error! Selection must be a number!");
+                }
+            }
+            return ticketID;
         }
     }
 }
