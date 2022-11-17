@@ -57,9 +57,9 @@ app.MapPost("/createticket", (TicketSqlRepository repo, double amount, string de
 app.MapGet("/getpendingtickets", (TicketSqlRepository repo) => 
 {
     return repo.getPendingTickets();
-}) ;
+});
 
-app.MapPut("/updateticketstatus", (TicketSqlRepository repo, int ticketID, string status) =>
+app.MapPut("/updateticketstatus/{ticketID}", (TicketSqlRepository repo, int ticketID, string status) =>
 {
     repo.updateTicketStatus(ticketID, status);
     return Results.NoContent();
