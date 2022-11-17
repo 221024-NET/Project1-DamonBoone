@@ -70,5 +70,15 @@ namespace Project1
             }
         return input;
         }
+
+        public string getNewStatus()
+        {
+            string status;
+
+            Console.WriteLine("Please enter a new ticket status: ");
+            status = Console.ReadLine();
+
+            return status;
+        }
     }
 }

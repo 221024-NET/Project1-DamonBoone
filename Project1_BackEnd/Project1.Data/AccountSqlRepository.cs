@@ -10,7 +10,7 @@ namespace Project1.Data
 {
     public class AccountSqlRepository : AccountRepository
     {
-        string connectionString = File.ReadAllText("F:/Revature/Project1/connectionString.txt");
+        string connectionString = File.ReadAllText("F:/Revature/Project1/Project1_BackEnd/connectionString.txt");
         public bool createAccount(string email, string password, string role)
         {
             //takes email, password, permissions as parameters

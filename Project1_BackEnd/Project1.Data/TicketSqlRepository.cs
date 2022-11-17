@@ -10,7 +10,7 @@ namespace Project1.Data
 {
     public class TicketSqlRepository : TicketRepository
     {
-        string connectionString = File.ReadAllText("F:/Revature/Project1/connectionString.txt");
+        string connectionString = File.ReadAllText("F:/Revature/Project1/Project1_BackEnd/connectionString.txt");
 
         public bool createTicket(double amount, string description)
         {

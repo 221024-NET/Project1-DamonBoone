@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var conn = File.ReadAllText("F:/Revature/Project1/connectionString.txt");
+var conn = File.ReadAllText("F:/Revature/Project1/Project1_BackEnd/connectionString.txt");
 //var conn = builder.Configuration.GetValue<string>("ConnectionString:DamonDB");
 
 builder.Services.AddTransient<AccountSqlRepository>();

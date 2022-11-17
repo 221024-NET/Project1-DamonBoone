@@ -62,5 +62,23 @@ namespace Project1.App
                 printAllTickets();
             }
         }
+
+        public List<Ticket> getPendingTickets()
+        {
+            List<Ticket> ticketList = ticketRepo.getPendingTickets();
+            foreach (Ticket ticket in ticketList)
+            {
+                ticket.printTicketDetails();
+            }
+            return ticketList;
+        }
+
+        public void updateTicket()
+        {
+            //enter id of the ticket they want to update
+            //enter the new status
+            //update ticket in db, remove it from the list
+        }
+
     }
 }
