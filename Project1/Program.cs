@@ -19,8 +19,13 @@ namespace Project1.App
 
 
             
-            //UserAccount currentUser = acc.login();
-            //currentUser.printAccountDetails();
+            UserAccount currentUser = acc.login();
+            currentUser.printAccountDetails();
+            if(currentUser.role == "employee")
+            {
+                tm.employeeMenu();
+            }
+
             //if(currentUser.role == "employee")
             //{
             //    tm.printAllTickets();

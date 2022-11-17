@@ -95,13 +95,6 @@ namespace Project1.App
             return role;
         }
 
-        public bool employeeMenu(UserAccount user)
-        {
-            //check if the currently logged in account has the employee role
-            //if they dont.. dont show this menu
-            //enter 1 to create a new ticket
-            //enter 2 to see all tickets
-            return true;
-        }
+
     }
 }

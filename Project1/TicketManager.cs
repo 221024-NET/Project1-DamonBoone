@@ -12,6 +12,7 @@ namespace Project1.App
     {
         TicketRepository ticketRepo;
         TicketIO ticketIO;
+        
 
         public TicketManager(TicketRepository ticketRepo, TicketIO IO)
         {
@@ -46,6 +47,19 @@ namespace Project1.App
             foreach(Ticket ticket in ticketList)
             {
                 ticket.printTicketDetails();
+            }
+        }
+
+        public void employeeMenu()
+        {
+            int input = ticketIO.employeeMenu();
+            if (input == 1)
+            {
+                createTicket();
+            }
+            else if (input == 2)
+            {
+                printAllTickets();
             }
         }
     }

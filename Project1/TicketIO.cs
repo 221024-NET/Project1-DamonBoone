@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Project1.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -38,6 +39,36 @@ namespace Project1
             description = Console.ReadLine();
 
             return description;
+        }
+
+        public int employeeMenu()
+        {
+            //check if the currently logged in account has the employee role
+            //if they dont.. dont show this menu
+            //enter 1 to create a new ticket
+            //enter 2 to see all tickets
+            int input = 0;
+            bool keepGoing = true;
+            while (keepGoing)
+            {
+                try
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("Enter the number corresponding with your menu slection.");
+                    Console.WriteLine("1. Create a new ticket");
+                    Console.WriteLine("2. View past tickets");
+                    input = Convert.ToInt32(Console.ReadLine());
+                    if (input == 1 || input == 2)
+                    {
+                        keepGoing = false;
+                    }
+                }
+                catch (System.FormatException ex)
+                {
+                    Console.WriteLine("Error! Selection must be a number!");
+                }
+            }
+        return input;
         }
     }
 }
