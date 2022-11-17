@@ -17,8 +17,13 @@ namespace Project1_Client
             //    TicketManager.updateTicketAsync(b).GetAwaiter().GetResult();
             //}
 
-            UserAccount a = AccountManager.getAccountAsync("login").GetAwaiter().GetResult();
-            a.printAccountDetails();
+            UserAccount acc = new UserAccount();
+            acc.email = "test@example.com";
+            acc.password = "abc";
+            acc.role = "employee";
+
+            var a = AccountManager.CreateAccountAsync(acc).GetAwaiter().GetResult();
+            Console.WriteLine(a);
             
         }
 
