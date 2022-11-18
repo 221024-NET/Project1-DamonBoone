@@ -9,8 +9,6 @@ namespace Project1.App
 {
     public class UserIO
     {
-
-        public UserIO() { }
         //show inital prompt for user login
         //steps:
         //enter your username, or press 2 to make an account

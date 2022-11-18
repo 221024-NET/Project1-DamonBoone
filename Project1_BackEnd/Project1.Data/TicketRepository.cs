@@ -12,6 +12,6 @@ namespace Project1.Data
         public bool createTicket(double amount, string description);
         public List<Ticket> getAllTickets();
         public List<Ticket> getPendingTickets();
-        public void updateTicketStatus(int id, Ticket ticket);
+        public void updateTicketStatus(int id, string newStatus);
     };
 }

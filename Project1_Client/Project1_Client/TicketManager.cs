@@ -1,4 +1,5 @@
-﻿using Project1.Classes;
+﻿using Project1;
+using Project1.Classes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,11 +30,6 @@ namespace Project1_Client
             }
 
             return ticketList;
-        }
-
-        public static void ShowTicket(Ticket ticket)
-        {
-            ticket.printTicketDetails();
         }
 
         public static async Task<List<Ticket>> getPendingTicketsAsync()
@@ -85,6 +81,49 @@ namespace Project1_Client
             response.EnsureSuccessStatusCode();
 
             return response.Headers.Location;
+        }
+
+        public static void employeeMenu()
+        {
+            int input = TicketIO.employeeMenu();
+            if (input == 1)
+            {
+                //amount
+                //description
+                Ticket ticket = new Ticket();
+                ticket.amount = TicketIO.getAmount();
+                ticket.description = TicketIO.getDescription();
+                createTicketAsync(ticket).GetAwaiter().GetResult();
+            }
+            else if (input == 2)
+            {
+                List<Ticket> list = new List<Ticket>();
+                list = getAllTicketsAsync().GetAwaiter().GetResult();
+                foreach(Ticket t in list)
+                {
+                    t.printTicketDetails();
+                }
+            }
+        }
+
+        public static void managerMenu()
+        {
+            int input = TicketIO.managerMenu();
+            if (input == 1)
+            {
+                List<Ticket> list = new List<Ticket>();
+                list = getPendingTicketsAsync().GetAwaiter().GetResult();
+                foreach(Ticket t in list)
+                {
+                    t.printTicketDetails();
+                }
+                int updateID = TicketIO.ticketToUpdate();
+                string newStatus = TicketIO.getNewStatus();
+                Ticket temp = new Ticket();
+                temp.id = updateID;
+                temp.status = newStatus;
+                updateTicketAsync(temp).GetAwaiter().GetResult();
+            }
         }
     }
 }

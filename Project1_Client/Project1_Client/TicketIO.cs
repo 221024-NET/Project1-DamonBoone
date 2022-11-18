@@ -10,9 +10,7 @@ namespace Project1
 {
     public class TicketIO
     {
-        public TicketIO() { }
-
-        public double getAmount()
+        public static double getAmount()
         {
             double amount = 0;
 
@@ -32,7 +30,7 @@ namespace Project1
             }
         }
 
-        public string getDescription()
+        public static string getDescription()
         {
             string description;
 
@@ -42,7 +40,7 @@ namespace Project1
             return description;
         }
 
-        public int employeeMenu()
+        public static int employeeMenu()
         {
             //check if the currently logged in account has the employee role
             //if they dont.. dont show this menu
@@ -72,7 +70,36 @@ namespace Project1
             return input;
         }
 
-        public string getNewStatus()
+        public static int managerMenu()
+        {
+            //check if the currently logged in account has the employee role
+            //if they dont.. dont show this menu
+            //enter 1 to create a new ticket
+            //enter 2 to see all tickets
+            int input = 0;
+            bool keepGoing = true;
+            while (keepGoing)
+            {
+                try
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("Enter the number corresponding with your menu slection.");
+                    Console.WriteLine("1. Update an existing ticket");
+                    input = Convert.ToInt32(Console.ReadLine());
+                    if (input == 1)
+                    {
+                        keepGoing = false;
+                    }
+                }
+                catch (System.FormatException ex)
+                {
+                    Console.WriteLine("Error! Selection must be a number!");
+                }
+            }
+            return input;
+        }
+
+        public static string getNewStatus()
         {
             string status;
 
@@ -82,7 +109,7 @@ namespace Project1
             return status;
         }
 
-        public int ticketToUpdate()
+        public static int ticketToUpdate()
         {
             int ticketID = 0;
             bool keepGoing = true;

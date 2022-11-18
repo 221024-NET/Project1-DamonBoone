@@ -49,9 +49,9 @@ app.MapGet("/gettickets", (TicketSqlRepository repo) =>
     return repo.getAllTickets();
 });
 
-app.MapPost("/createticket", (TicketSqlRepository repo, double amount, string description) =>
+app.MapPost("/createticket", (TicketSqlRepository repo, [FromBody]Ticket ticket) =>
 {
-    return repo.createTicket(amount, description);
+    return repo.createTicket(ticket.amount, ticket.description);
 });
 
 app.MapGet("/getpendingtickets", (TicketSqlRepository repo) => 
@@ -61,7 +61,7 @@ app.MapGet("/getpendingtickets", (TicketSqlRepository repo) =>
 
 app.MapPut("/updateticketstatus/{ticketID}", (TicketSqlRepository repo, int ticketID, Ticket ticket) =>
 {
-    repo.updateTicketStatus(ticketID, ticket);
+    repo.updateTicketStatus(ticketID, ticket.status);
     return Results.NoContent();
 });
 

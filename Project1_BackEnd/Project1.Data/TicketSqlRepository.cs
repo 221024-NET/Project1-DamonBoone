@@ -85,14 +85,14 @@ namespace Project1.Data
             return pendingTickets;
         }
 
-        public void updateTicketStatus(int ticketID, Ticket ticket)
+        public void updateTicketStatus(int ticketID, string newStatus)
         {
             using SqlConnection connection = new SqlConnection(connectionString);
             connection.Open();
 
-            string update = @"update Project1.Ticket set status = '" + ticket.status + "' where ticketID = @ticketID;";
+            string update = @"update Project1.Ticket set status = @newStatus where ticketID = @ticketID;";
             using SqlCommand updateCommand = new SqlCommand(update, connection);
-            //updateCommand.Parameters.AddWithValue("@ticket.status", ticket.status);
+            updateCommand.Parameters.AddWithValue("@newStatus", newStatus);
             updateCommand.Parameters.AddWithValue("@ticketID", ticketID);
             using SqlDataReader reader = updateCommand.ExecuteReader();
 

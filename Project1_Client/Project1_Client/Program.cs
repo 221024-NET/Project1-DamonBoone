@@ -9,6 +9,24 @@ namespace Project1_Client
     {
         static void Main()
         {
+            UserAccount currentLogin = AccountManager.login().GetAwaiter().GetResult();
+            currentLogin.printAccountDetails();
+
+            if (currentLogin.role == "employee")
+            {
+                while (true)
+                {
+                    TicketManager.employeeMenu();
+                }
+            }
+            else if (currentLogin.role == "manager")
+            {
+                while (true)
+                {
+                    TicketManager.managerMenu();
+                }
+            }
+
             //print tickets example
             //var pending = TicketManager.getPendingTicketsAsync().GetAwaiter().GetResult(); 
             //foreach(var b in pending)
@@ -45,8 +63,7 @@ namespace Project1_Client
 
             //TicketManager.updateTicketAsync(a).GetAwaiter().GetResult();
 
-            UserAccount currentLogin = AccountManager.login().GetAwaiter().GetResult();
-            currentLogin.printAccountDetails();
+
 
         }
 
