@@ -117,6 +117,11 @@ namespace Project1_Client
                 {
                     t.printTicketDetails();
                 }
+                if(list.Count == 0)
+                {
+                    Console.WriteLine("There are currently no pending tickets.");
+                    return;
+                }
                 int updateID = TicketIO.ticketToUpdate();
                 string newStatus = TicketIO.getNewStatus();
                 Ticket temp = new Ticket();

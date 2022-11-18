@@ -56,10 +56,15 @@ namespace Project1
                     Console.WriteLine("Enter the number corresponding with your menu slection.");
                     Console.WriteLine("1. Create a new ticket");
                     Console.WriteLine("2. View past tickets");
+                    Console.WriteLine("3. Quit application");
                     input = Convert.ToInt32(Console.ReadLine());
                     if (input == 1 || input == 2)
                     {
                         keepGoing = false;
+                    }
+                    else if(input == 3)
+                    {
+                        Environment.Exit(0);
                     }
                 }
                 catch (System.FormatException ex)
@@ -85,10 +90,15 @@ namespace Project1
                     Console.WriteLine();
                     Console.WriteLine("Enter the number corresponding with your menu slection.");
                     Console.WriteLine("1. Update an existing ticket");
+                    Console.WriteLine("2. Quit application");
                     input = Convert.ToInt32(Console.ReadLine());
                     if (input == 1)
                     {
                         keepGoing = false;
+                    }
+                    else if(input == 2)
+                    {
+                        Environment.Exit(0);
                     }
                 }
                 catch (System.FormatException ex)

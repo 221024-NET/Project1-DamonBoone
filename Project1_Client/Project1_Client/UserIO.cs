@@ -30,11 +30,16 @@ namespace Project1.App
                     Console.WriteLine("Enter the number corresponding with your menu slection.");
                     Console.WriteLine("1. Login with existing account");
                     Console.WriteLine("2. Create new account");
+                    Console.WriteLine("3. Quit application");
                     menuSelection = Convert.ToInt32(Console.ReadLine());
                     //input validation...
                     if (menuSelection == 1 || menuSelection == 2)
                     {
                         keepGoing = false;
+                    }
+                    else if(menuSelection == 3)
+                    {
+                        Environment.Exit(0);
                     }
                 }
                 catch (System.FormatException ex)
