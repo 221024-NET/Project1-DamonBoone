@@ -14,6 +14,7 @@ namespace Project1_Client
 
         public static async Task<List<Ticket>> getAllTicketsAsync()
         {
+            client = new HttpClient();
             client.BaseAddress = new Uri("https://localhost:7021/");
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(
@@ -37,6 +38,7 @@ namespace Project1_Client
 
         public static async Task<List<Ticket>> getPendingTicketsAsync()
         {
+            client = new HttpClient();
             client.BaseAddress = new Uri("https://localhost:7021/");
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(
@@ -56,6 +58,7 @@ namespace Project1_Client
         //update ticket
         public static async Task<Ticket> updateTicketAsync(Ticket ticket)
         {
+            client = new HttpClient();
             client.BaseAddress = new Uri("https://localhost:7021/");
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(
@@ -70,5 +73,18 @@ namespace Project1_Client
         }
 
         //create ticket
+        public static async Task<Uri> createTicketAsync(Ticket ticket)
+        {
+            client = new HttpClient();
+            client.BaseAddress = new Uri("https://localhost:7021/");
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue("application/json"));
+
+            HttpResponseMessage response = await client.PostAsJsonAsync("createticket", ticket);
+            response.EnsureSuccessStatusCode();
+
+            return response.Headers.Location;
+        }
     }
 }

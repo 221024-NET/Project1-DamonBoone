@@ -17,6 +17,13 @@ namespace Project1.Classes
             this.role = permissions;
         }
 
+        public UserAccount(string email, string password, string permissions)
+        {
+            this.email = email;
+            this.password = password;
+            this.role = permissions;
+        }
+
         public UserAccount() { }
 
         public void printAccountDetails()

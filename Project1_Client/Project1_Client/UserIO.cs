@@ -18,7 +18,7 @@ namespace Project1.App
         //call getAccount method, if it cant find their account re-prompt
         //allow user to go back to making an account or try credentials again
 
-        public int welcomeMessage()
+        public static int welcomeMessage()
         {
             int menuSelection = 0;
             bool keepGoing = true;
@@ -47,7 +47,7 @@ namespace Project1.App
             return menuSelection;
         }
 
-        public string getLoginEmail()
+        public static string getLoginEmail()
         {
             string email;
 
@@ -57,7 +57,7 @@ namespace Project1.App
             return email;
         }
 
-        public string getLoginPassword()
+        public static string getLoginPassword()
         {
             string password;
 
@@ -67,7 +67,7 @@ namespace Project1.App
             return password;
         }
 
-        public int getRole()
+        public static int getRole()
         {
             int role = 0;
             bool keepGoing = true;
@@ -94,7 +94,5 @@ namespace Project1.App
             }
             return role;
         }
-
-
     }
 }

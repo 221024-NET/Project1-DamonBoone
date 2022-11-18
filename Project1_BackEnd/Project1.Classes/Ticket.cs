@@ -21,6 +21,15 @@ namespace Project1.Classes
             this.status = status;
         }
 
+        public Ticket(double amount, string description, string status = "Pending")
+        {
+            this.amount = amount;
+            this.description = description;
+            this.status = status;
+        }
+
+        public Ticket() { }
+
         public void printTicketDetails()
         {
             Console.WriteLine();

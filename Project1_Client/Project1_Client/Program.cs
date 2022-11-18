@@ -7,24 +7,47 @@ namespace Project1_Client
 {
     public class Program
     {
-        
         static void Main()
         {
+            //print tickets example
             //var pending = TicketManager.getPendingTicketsAsync().GetAwaiter().GetResult(); 
             //foreach(var b in pending)
             //{
             //    TicketManager.ShowTicket(b);
-            //    TicketManager.updateTicketAsync(b).GetAwaiter().GetResult();
+            //    
             //}
 
-            UserAccount acc = new UserAccount();
-            acc.email = "test@example.com";
-            acc.password = "abc";
-            acc.role = "employee";
 
-            var a = AccountManager.CreateAccountAsync(acc).GetAwaiter().GetResult();
-            Console.WriteLine(a);
-            
+            //create account example
+            //UserAccount acc = new UserAccount();
+            //acc.email = "test5@example.com";
+            //acc.password = "abc";
+            //acc.role = "employee";
+
+            //var a = AccountManager.CreateAccountAsync(acc).GetAwaiter().GetResult();
+            //Console.WriteLine(a);
+
+
+            //login example
+            //UserAccount user = new UserAccount();
+            //user.email = "test@test.com";
+            //user.password = "pass";
+
+            //UserAccount login = new UserAccount();
+            //login = AccountManager.getAccountAsync(user).GetAwaiter().GetResult();
+            //login.printAccountDetails();
+
+
+            //update ticket example
+            //Ticket a = new Ticket();
+            //a.id = 7;
+            //a.status = "approved";
+
+            //TicketManager.updateTicketAsync(a).GetAwaiter().GetResult();
+
+            UserAccount currentLogin = AccountManager.login().GetAwaiter().GetResult();
+            currentLogin.printAccountDetails();
+
         }
 
 

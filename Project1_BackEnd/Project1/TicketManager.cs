@@ -82,7 +82,7 @@ namespace Project1.App
             List<Ticket> ticketList = getPendingTickets();
             bool keepGoing = true;
             int selection = 0;
-            string newStatus = "";
+            Ticket newStatus = new Ticket();
 
             while (keepGoing)
             {
@@ -90,7 +90,7 @@ namespace Project1.App
                 for (int i = 0; i < ticketList.Count; i++)
                 {
                     if (ticketList[i].id == selection) {
-                        newStatus = ticketIO.getNewStatus();
+                        newStatus.status = ticketIO.getNewStatus();
                         ticketRepo.updateTicketStatus(selection, newStatus);
                         ticketList.RemoveAt(i);
                         keepGoing = false;
