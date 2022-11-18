@@ -113,14 +113,14 @@ namespace Project1_Client
             {
                 List<Ticket> list = new List<Ticket>();
                 list = getPendingTicketsAsync().GetAwaiter().GetResult();
-                foreach(Ticket t in list)
-                {
-                    t.printTicketDetails();
-                }
-                if(list.Count == 0)
+                if (list.Count == 0)
                 {
                     Console.WriteLine("There are currently no pending tickets.");
                     return;
+                }
+                foreach (Ticket t in list)
+                {
+                    t.printTicketDetails();
                 }
                 int updateID = TicketIO.ticketToUpdate();
                 string newStatus = TicketIO.getNewStatus();
