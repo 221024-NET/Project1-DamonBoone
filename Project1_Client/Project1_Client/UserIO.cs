@@ -44,7 +44,9 @@ namespace Project1.App
                 }
                 catch (System.FormatException ex)
                 {
+                    Console.WriteLine();
                     Console.WriteLine("Error! Selection must be a number!");
+                    Console.WriteLine();
                 }
             }
             return menuSelection;
@@ -53,7 +55,7 @@ namespace Project1.App
         public static string getLoginEmail()
         {
             string email;
-
+            Console.WriteLine();
             Console.WriteLine("Please enter your email: ");
             email = Console.ReadLine();
 
@@ -63,7 +65,7 @@ namespace Project1.App
         public static string getLoginPassword()
         {
             string password;
-
+            Console.WriteLine();
             Console.WriteLine("Please enter your password: ");
             password = Console.ReadLine();
 
@@ -92,7 +94,9 @@ namespace Project1.App
                 }
                 catch (System.FormatException ex)
                 {
+                    Console.WriteLine();
                     Console.WriteLine("Error! Selection must be a number!");
+                    Console.WriteLine();
                 }
             }
             return role;

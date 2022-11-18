@@ -18,12 +18,15 @@ namespace Project1
             {
                 try
                 {
+                    Console.WriteLine();
                     Console.WriteLine("Please enter the amount in USD: ");
                     amount = Convert.ToDouble(Console.ReadLine());
                 }
                 catch (System.FormatException ex)
                 {
+                    Console.WriteLine();
                     Console.WriteLine("Error! Amount must be a number with up to 2 decimal places.");
+                    Console.WriteLine();
                     continue;
                 }
                 return amount;
@@ -34,6 +37,7 @@ namespace Project1
         {
             string description;
 
+            Console.WriteLine();
             Console.WriteLine("Please enter a description: ");
             description = Console.ReadLine();
 
@@ -103,7 +107,9 @@ namespace Project1
                 }
                 catch (System.FormatException ex)
                 {
+                    Console.WriteLine();
                     Console.WriteLine("Error! Selection must be a number!");
+                    Console.WriteLine();
                 }
             }
             return input;
@@ -113,6 +119,7 @@ namespace Project1
         {
             string status;
 
+            Console.WriteLine();
             Console.WriteLine("Please enter a new ticket status: ");
             status = Console.ReadLine();
 
@@ -127,6 +134,7 @@ namespace Project1
             {
                 try
                 {
+                    Console.WriteLine();
                     Console.WriteLine("Enter the ID of the ticket you would like to update: ");
                     ticketID = Convert.ToInt32(Console.ReadLine());
                     if (ticketID > 0)
@@ -136,7 +144,9 @@ namespace Project1
                 }
                 catch (System.FormatException ex)
                 {
+                    Console.WriteLine();
                     Console.WriteLine("Error! Selection must be a number!");
+                    Console.WriteLine();
                 }
             }
             return ticketID;
