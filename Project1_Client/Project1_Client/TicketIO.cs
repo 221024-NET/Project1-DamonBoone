@@ -35,12 +35,25 @@ namespace Project1
 
         public static string getDescription()
         {
-            string description;
+            string description = "";
+            bool keepGoing = true;
 
-            Console.WriteLine();
-            Console.WriteLine("Please enter a description: ");
-            description = Console.ReadLine();
-
+            while (keepGoing)
+            {
+                Console.WriteLine();
+                Console.WriteLine("Please enter a description: ");
+                description = Console.ReadLine();
+                if (description.Length > 0)
+                {
+                    keepGoing = false;
+                }
+                else
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("Error! No description entered. Please try again.");
+                    Console.WriteLine();
+                }
+            }
             return description;
         }
 
@@ -69,6 +82,12 @@ namespace Project1
                     else if(input == 3)
                     {
                         Environment.Exit(0);
+                    }
+                    else
+                    {
+                        Console.WriteLine();
+                        Console.WriteLine("Error! Selection is not included in the menu.");
+                        Console.WriteLine();
                     }
                 }
                 catch (System.FormatException ex)
@@ -104,6 +123,12 @@ namespace Project1
                     {
                         Environment.Exit(0);
                     }
+                    else
+                    {
+                        Console.WriteLine();
+                        Console.WriteLine("Error! Selection is not included in the menu.");
+                        Console.WriteLine();
+                    }
                 }
                 catch (System.FormatException ex)
                 {
@@ -117,12 +142,26 @@ namespace Project1
 
         public static string getNewStatus()
         {
-            string status;
+            string status = "";
+            bool keepGoing = true;
 
-            Console.WriteLine();
-            Console.WriteLine("Please enter a new ticket status: ");
-            status = Console.ReadLine();
+            while (keepGoing)
+            {
+                Console.WriteLine();
+                Console.WriteLine("Please enter a new ticket status: ");
+                status = Console.ReadLine();
 
+                if (status.Length > 0)
+                {
+                    keepGoing = false;
+                }
+                else
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("Error! No status entered. Please try again.");
+                    Console.WriteLine();
+                }
+            }
             return status;
         }
 

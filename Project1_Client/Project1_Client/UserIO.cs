@@ -41,6 +41,12 @@ namespace Project1.App
                     {
                         Environment.Exit(0);
                     }
+                    else
+                    {
+                        Console.WriteLine();
+                        Console.WriteLine("Error! Selection is not included in the menu.");
+                        Console.WriteLine();
+                    }
                 }
                 catch (System.FormatException ex)
                 {
@@ -54,21 +60,48 @@ namespace Project1.App
 
         public static string getLoginEmail()
         {
-            string email;
-            Console.WriteLine();
-            Console.WriteLine("Please enter your email: ");
-            email = Console.ReadLine();
+            string email = "";
+            bool keepGoing = true;
+            while (keepGoing)
+            {
 
+                Console.WriteLine();
+                Console.WriteLine("Please enter your email: ");
+                email = Console.ReadLine();
+                if(email.Length > 0)
+                {
+                    keepGoing = false;
+                }
+                else
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("Error! No email entered. Please try again.");
+                    Console.WriteLine();
+                }
+            }
             return email;
         }
 
         public static string getLoginPassword()
         {
-            string password;
-            Console.WriteLine();
-            Console.WriteLine("Please enter your password: ");
-            password = Console.ReadLine();
-
+            string password = "";
+            bool keepGoing = true;
+            while (keepGoing)
+            {
+                Console.WriteLine();
+                Console.WriteLine("Please enter your password: ");
+                password = Console.ReadLine();
+                if (password.Length > 0)
+                {
+                    keepGoing = false;
+                }
+                else
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("Error! No password entered. Please try again.");
+                    Console.WriteLine();
+                }
+            }
             return password;
         }
 
@@ -90,6 +123,12 @@ namespace Project1.App
                     if (role == 1 || role == 2)
                     {
                         keepGoing = false;
+                    }
+                    else
+                    {
+                        Console.WriteLine();
+                        Console.WriteLine("Error! Selection is not included in the menu.");
+                        Console.WriteLine();
                     }
                 }
                 catch (System.FormatException ex)

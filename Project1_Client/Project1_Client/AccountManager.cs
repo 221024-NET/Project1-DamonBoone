@@ -63,6 +63,11 @@ namespace Project1.App
                         temp.role = roleName;
                         var a = await createAccountAsync(temp);
                         account = await getAccountAsync(temp);
+                        if(account.email == null)
+                        {
+                            Console.WriteLine("That email is already registered. Please enter a new email.");
+                            continue;
+                        }
                         return account;
                     }
                     else if (roleNumber == 2)
@@ -71,6 +76,11 @@ namespace Project1.App
                         temp.role = roleName;
                         var a = await createAccountAsync(temp);
                         account = await getAccountAsync(temp);
+                        if (account.email == null)
+                        {
+                            Console.WriteLine("That email is already registered. Please enter a new email.");
+                            continue;
+                        }
                         return account;
                     }
                 }

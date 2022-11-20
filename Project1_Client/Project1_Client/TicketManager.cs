@@ -123,11 +123,22 @@ namespace Project1_Client
                     t.printTicketDetails();
                 }
                 int updateID = TicketIO.ticketToUpdate();
-                string newStatus = TicketIO.getNewStatus();
-                Ticket temp = new Ticket();
-                temp.id = updateID;
-                temp.status = newStatus;
-                updateTicketAsync(temp).GetAwaiter().GetResult();
+                for (int i = 0; i < list.Count(); i++)
+                {
+                    if(list[i].id == updateID)
+                    {
+                        string newStatus = TicketIO.getNewStatus();
+                        Ticket temp = new Ticket();
+                        temp.id = updateID;
+                        temp.status = newStatus;
+                        updateTicketAsync(temp).GetAwaiter().GetResult();
+                    }
+                    else
+                    {
+                        Console.WriteLine();
+                        Console.WriteLine("Error! Could not find a ticket with the entered ID. Please try again.");
+                    }
+                }
             }
         }
     }
