@@ -127,7 +127,16 @@ namespace Project1_Client
                 {
                     if(list[i].id == updateID)
                     {
-                        string newStatus = TicketIO.getNewStatus();
+                        int newStatusNum = TicketIO.getNewStatus();
+                        string newStatus = "";
+                        if(newStatusNum == 1)
+                        {
+                            newStatus = "approved";
+                        }
+                        else if(newStatusNum == 2)
+                        {
+                            newStatus = "denied";
+                        }
                         Ticket temp = new Ticket();
                         temp.id = updateID;
                         temp.status = newStatus;

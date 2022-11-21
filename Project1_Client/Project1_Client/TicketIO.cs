@@ -140,29 +140,40 @@ namespace Project1
             return input;
         }
 
-        public static string getNewStatus()
+        public static int getNewStatus()
         {
-            string status = "";
+            int newStatus = 0;
             bool keepGoing = true;
 
             while (keepGoing)
             {
-                Console.WriteLine();
-                Console.WriteLine("Please enter a new ticket status: ");
-                status = Console.ReadLine();
-
-                if (status.Length > 0)
-                {
-                    keepGoing = false;
-                }
-                else
+                try
                 {
                     Console.WriteLine();
-                    Console.WriteLine("Error! No status entered. Please try again.");
+                    Console.WriteLine("Select the new status for the ticket.");
+                    Console.WriteLine("1. Approve");
+                    Console.WriteLine("2. Deny");
+                    newStatus = Convert.ToInt32(Console.ReadLine());
+                    //input validation...
+                    if (newStatus == 1 || newStatus == 2)
+                    {
+                        keepGoing = false;
+                    }
+                    else
+                    {
+                        Console.WriteLine();
+                        Console.WriteLine("Error! Selection is not included in the menu.");
+                        Console.WriteLine();
+                    }
+                }
+                catch (System.FormatException ex)
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("Error! Selection must be a number!");
                     Console.WriteLine();
                 }
             }
-            return status;
+            return newStatus;
         }
 
         public static int ticketToUpdate()
